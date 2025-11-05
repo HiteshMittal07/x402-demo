@@ -52,10 +52,13 @@ USER node
 
 
 # Environment variables should be provided at runtime (e.g., via docker-compose.yaml)
+# Render provides PORT environment variable - map it to SERVER_PORT for elizaos
 
-# Expose port (adjust if needed based on your application)
+# Expose port (Render will bind to the PORT env var at runtime)
+# EXPOSE is just documentation - the actual port binding happens at runtime
 EXPOSE 3000
 
-
 # Start the application
-CMD ["elizaos", "start"]
+# Map Render's PORT env var to SERVER_PORT which elizaos expects
+# Ensure the server listens on 0.0.0.0 (all interfaces) for Render
+CMD sh -c "SERVER_PORT=${PORT:-3000} SERVER_HOST=0.0.0.0 elizaos start"
