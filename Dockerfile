@@ -54,7 +54,7 @@ USER node
 
 # Expose port (adjust if needed based on your application)
 # Port 5173 is for Vite dev server (not needed in production)
-EXPOSE 3000
+EXPOSE 10000
 
 
 # Start the application
