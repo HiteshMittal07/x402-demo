@@ -58,4 +58,4 @@ EXPOSE 10000
 
 
 # Start the application
-CMD ["elizaos", "start"]
+CMD ["elizaos", "start", "--port", "10000"]
