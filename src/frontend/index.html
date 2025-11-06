@@ -6,9 +6,12 @@
     <title>ElizaOS Frontend</title>
     <script>
       // This will be injected by the server in production
+      // For production, use relative path or let server inject the correct URL
       window.ELIZA_CONFIG = {
         agentId: 'test-agent-id',
-        apiBase: 'http://localhost:3000',
+        // Use relative path in production (server will inject correct URL)
+        // For local dev, this will be overridden by Vite proxy
+        apiBase: window.location.origin,
       };
     </script>
   </head>

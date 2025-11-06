@@ -53,7 +53,8 @@ USER node
 # Environment variables should be provided at runtime (e.g., via docker-compose.yaml)
 
 # Expose port (adjust if needed based on your application)
-EXPOSE 3000 5173
+# Port 5173 is for Vite dev server (not needed in production)
+EXPOSE 3000
 
 
 # Start the application
