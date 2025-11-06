@@ -15,7 +15,6 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 
-
 # Install bun globally with npm
 RUN npm install -g bun
 
@@ -54,7 +53,7 @@ USER node
 # Environment variables should be provided at runtime (e.g., via docker-compose.yaml)
 
 # Expose port (adjust if needed based on your application)
-EXPOSE 3000
+EXPOSE 3000 5173
 
 
 # Start the application

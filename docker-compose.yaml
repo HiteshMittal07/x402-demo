@@ -20,11 +20,16 @@ services:
     networks:
       - eliza-network
   elizaos:
-    image: ${DOCKER_IMAGE}
+    # Option 1: Build from Dockerfile (recommended - no DOCKER_IMAGE needed)
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # Option 2: Use pre-built image (set DOCKER_IMAGE in .env)
+    # image: ${DOCKER_IMAGE}
     container_name: elizaos
     environment:
       # Core AI providers (at least one required)
-      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
 
       # Database (required for production)
@@ -55,6 +60,7 @@ services:
 
       # Other AI providers
       - REDPILL_API_KEY=${REDPILL_API_KEY:-}
+      - PRIVATE_KEY=${PRIVATE_KEY}
     ports:
       - '3000:3000'
       - '50000-50100:50000-50100/udp'

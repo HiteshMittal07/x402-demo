@@ -39,7 +39,9 @@ export const character: Character = {
     ...(!process.env.IGNORE_BOOTSTRAP ? ["@elizaos/plugin-bootstrap"] : []),
   ],
   settings: {
-    secrets: {},
+    secrets: {
+      PRIVATE_KEY: process.env.PRIVATE_KEY,
+    },
     avatar: "https://elizaos.github.io/eliza-avatars/Eliza/portrait.png",
   },
   system:
