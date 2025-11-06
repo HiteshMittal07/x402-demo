@@ -40,6 +40,9 @@ COPY . .
 # Build the application
 RUN bun run build
 
+# Make startup script executable
+RUN chmod +x /app/start.sh
+
 # Change ownership of the app directory to node user
 RUN chown -R node:node /app
 
@@ -50,12 +53,13 @@ RUN mkdir -p /home/node/.bun && chown -R node:node /home/node/.bun
 USER node
 
 
-# Environment variables should be provided at runtime (e.g., via docker-compose.yaml)
+# Environment variables should be provided at runtime
+# Render automatically sets PORT environment variable - startup script maps it to SERVER_PORT
 
-# Expose port (adjust if needed based on your application)
-# Port 5173 is for Vite dev server (not needed in production)
+# Expose port (Render will use whatever port it assigns, this is just documentation)
+# The actual port is determined by Render's PORT env var at runtime
 EXPOSE 10000
 
 
-# Start the application
-CMD ["elizaos", "start", "--port", "10000"]
+# Start the application using the startup script
+CMD ["/app/start.sh"]
